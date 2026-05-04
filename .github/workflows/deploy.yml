@@ -1,0 +1,36 @@
+name: Despliegue con Terraform y LocalStack
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_DEFAULT_REGION: eu-west-1
+
+    # Crea un contenedor con LocalStack para simular los servicios de AWS
+    services:
+      localstack:
+        image: localstack/localstack:4.14.0
+        ports:
+          - 4566:4566
+
+    steps:
+      - name: Elige el repositorio
+        uses: actions/checkout@v4
+
+      - name: Establece Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Inicializa Terraform
+        run: terraform init -input=false
+
+      - name: Plan con Terraform
+        run: terraform plan -input=false
+      
+      - name: Despliega con Terraform 
+        run: terraform apply -auto-approve -input=false
