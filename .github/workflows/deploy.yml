@@ -12,7 +12,6 @@ jobs:
       AWS_SECRET_ACCESS_KEY: test
       AWS_DEFAULT_REGION: eu-west-1
 
-    # Crea un contenedor con LocalStack para simular los servicios de AWS
     services:
       localstack:
         image: localstack/localstack:4.14.0
