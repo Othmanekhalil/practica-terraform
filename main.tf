@@ -27,7 +27,7 @@ resource "aws_instance" "mi_instancia" {
 }
 
 
-module "mi_bucket" {
-  source        = "./modules/mi-recurso"
-  bucket_name = "bucket-modulo-othmane"
-}
+# module "mi_bucket" {
+#   source      = "./modules/mi-recurso"
+#   bucket_name = "bucket-modulo-othmane"
+# }
